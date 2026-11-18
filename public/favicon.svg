@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#11183C"/>
+  <g stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+    <!-- Outer frame top half turquoise, bottom half sky -->
+    <path d="M12 32V12H52V32" stroke="#47DBD9"/>
+    <path d="M12 32V52H52V32" stroke="#78A9FF"/>
+    <!-- Horizontal mid rail -->
+    <line x1="12" y1="32" x2="52" y2="32" stroke="#8C7BFF"/>
+    <!-- Column separators -->
+    <line x1="25" y1="12" x2="25" y2="52" stroke="#2C306D" stroke-width="3"/>
+    <line x1="39" y1="12" x2="39" y2="52" stroke="#2C306D" stroke-width="3"/>
+    <!-- Diagonal K braces (top row turquoise) -->
+    <polyline points="23,14 14,22 23,30" stroke="#47DBD9"/>
+    <polyline points="37,14 28,22 37,30" stroke="#47DBD9"/>
+    <polyline points="50,14 41,22 50,30" stroke="#47DBD9"/>
+    <!-- Diagonal arrow braces (bottom row sky) -->
+    <polyline points="14,34 23,42 14,50" stroke="#78A9FF"/>
+    <polyline points="28,34 37,42 28,50" stroke="#78A9FF"/>
+    <polyline points="41,34 50,42 41,50" stroke="#78A9FF"/>
+    <!-- Balanced vertical bars: cobalt, pink, and periwinkle-indigo -->
+    <line x1="18.5" y1="13" x2="18.5" y2="51" stroke="#4589FF" stroke-width="3.2"/>
+    <line x1="32" y1="13" x2="32" y2="51" stroke="#E801A0" stroke-width="3.2"/>
+    <line x1="45.5" y1="13" x2="45.5" y2="51" stroke="#8C7BFF" stroke-width="3.2"/>
+  </g>
+</svg>

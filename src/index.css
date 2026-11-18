@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Chapter Palette (HSL channels — balanced sapphire-indigo blues, subtle violet depth, sky/turquoise, and focal pink) */
+  --navy-950-hsl: 232 60% 10%;
+  --navy-900-hsl: 233 56% 15%;
+  --navy-800-hsl: 235 48% 21%;
+  --navy-700-hsl: 237 42% 30%;
+  --beige-hsl: 60 100% 97%;
+  --pink-hsl: 319 99% 46%;
+  --pink-hover-hsl: 320 100% 58%;
+  --indigo-hsl: 247 100% 74%;
+  --cobalt-hsl: 218 100% 63%;
+  --sky-hsl: 218 100% 74%;
+  --turquoise-hsl: 179 67% 57%;
+
+  /* Semantic shadcn/ui HSL tokens */
+  --background: var(--navy-900-hsl);
+  --foreground: var(--beige-hsl);
+  --card: var(--navy-800-hsl);
+  --card-foreground: var(--beige-hsl);
+  --popover: var(--navy-800-hsl);
+  --popover-foreground: var(--beige-hsl);
+  --primary: var(--pink-hsl);
+  --primary-foreground: var(--beige-hsl);
+  --secondary: var(--navy-800-hsl);
+  --secondary-foreground: var(--turquoise-hsl);
+  --muted: var(--navy-700-hsl);
+  --muted-foreground: 224 35% 78%;
+  --accent: var(--sky-hsl);
+  --accent-foreground: var(--navy-950-hsl);
+  --destructive: 0 84% 60%;
+  --destructive-foreground: var(--beige-hsl);
+  --border: var(--navy-700-hsl);
+  --input: var(--navy-700-hsl);
+  --ring: var(--turquoise-hsl);
+  --radius: 0.625rem;
+}
+
+@theme {
+  --color-navy-950: #0b1129;
+  --color-navy-900: #11183c;
+  --color-navy-800: #1b2150;
+  --color-navy-700: #2c306d;
+  --color-navy-600: #424799;
+  --color-indigo: #8c7bff;
+  --color-cobalt: #4589ff;
+  --color-cobalt-dark: #1d4ed8;
+  --color-ice: #a6c8ff;
+  --color-beige: #fffff0;
+  --color-beige-dim: rgba(255, 255, 240, 0.74);
+  --color-pink: #e801a0;
+  --color-pink-hover: #ff2bb8;
+  --color-sky: #78a9ff;
+  --color-turquoise: #47dbd9;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-border: hsl(var(--border));
+  --color-ring: hsl(var(--ring));
+
+  --font-display: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Poppins", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    background-color: #11183c;
+    color: #fffff0;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  section[id],
+  div[id] {
+    scroll-margin-top: 5.25rem;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #47dbd9;
+    outline-offset: 2px;
+  }
+}
+
+.beige-surface *:focus-visible {
+  outline: 2px solid #11183c;
+  outline-offset: 2px;
+}
+
+/* Mainframe Card Elevation & Hover */
+.z-card {
+  background-color: #1b2150;
+  border: 1px solid #2c306d;
+  border-radius: 10px;
+  transition: border-color 200ms ease-out, transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.z-card:hover,
+.z-card:focus-within {
+  border-color: rgba(71, 219, 217, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(140, 123, 255, 0.16);
+}
+
+/* Truss Bar Breathing Animation */
+@keyframes truss-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.92);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scaleY(1);
+  }
+}
+
+.truss-bar-breathe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: truss-breathe 8s ease-in-out infinite;
+}
+
+/* Terminal Block Cursor */
+@keyframes blink-block {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  vertical-align: -0.15em;
+  background-color: #47dbd9;
+  animation: blink-block 1.05s steps(1, end) infinite;
+}
+
+
+/* Decorative Outlined Index Numeral */
+.index-numeral-dark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #343b82;
+}
+
+.index-numeral-light {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(17, 24, 60, 0.24);
+}
+
+/* Scrollbar styling for horizontal presentations track */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .truss-bar-breathe {
+    animation: none;
+    opacity: 0.6;
+  }
+  .terminal-cursor {
+    animation: none;
+    opacity: 1;
+  }
+  .z-card {
+    transition: none;
+  }
+  .z-card:hover,
+  .z-card:focus-within {
+    transform: none;
+  }
+}

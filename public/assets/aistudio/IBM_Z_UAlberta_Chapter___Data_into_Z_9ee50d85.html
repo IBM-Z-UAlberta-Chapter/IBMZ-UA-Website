@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IBM Z UAlberta Chapter | Data into Z</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;height:100%;position:relative;overflow:hidden;background:#1d0f33;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;color:#fffff0}
+canvas{position:absolute;left:0;top:0;width:100%;height:100%}
+#hud{position:absolute;left:20px;bottom:20px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,240,.72)}
+#hud b{display:block;margin-top:4px;font-size:20px;font-weight:600;letter-spacing:.04em;color:#fffff0}
+</style></head>
+<body>
+<canvas id="c" role="img" aria-label="A bundle of colored cables carrying pixel data into the IBM Z UAlberta Chapter logo"></canvas>
+<div id="hud">Illustrative &middot; events processed<b id="n">0</b></div>
+<script>
+const $=i=>document.getElementById(i),cv=$('c'),x=cv.getContext('2d');
+const T_='#47dbd9',S_='#78a9ff',P_='#e801a0',B_='#fffff0',D_='#140a24',PAL=[P_,S_,T_,B_];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rnd=(a,b)=>a+Math.random()*(b-a),sm=(a,b,v)=>{v=Math.max(0,Math.min(1,(v-a)/(b-a)));return v*v*(3-2*v)};
+const SX0=156,SY0=156,BW=326,BH=336,BND=[241,329,405];
+const colAt=y=>y<241?T_:y<329?S_:y<405?T_:S_;
+
+/* ---- Logo: solid lines, geometry measured from the uploaded file (source px), frame bars removed ---- */
+const PC=[];
+function seg(x1,y1,x2,y2,col,T){PC.push({x1,y1,x2,y2,col,T,lv:0,tn:0,minx:Math.min(x1,x2)-T,maxx:Math.max(x1,x2)+T,miny:Math.min(y1,y2)-T,maxy:Math.max(y1,y2)+T})}
+function split(x1,y1,x2,y2,T){
+  const ts=[0,1];BND.forEach(b=>{const t=(b-y1)/(y2-y1);if(t>0&&t<1)ts.push(t)});ts.sort((a,b)=>a-b);
+  for(let i=0;i<ts.length-1;i++){const a=ts[i],b=ts[i+1],ax=x1+(x2-x1)*a,ay=y1+(y2-y1)*a,bx=x1+(x2-x1)*b,by=y1+(y2-y1)*b;seg(ax,ay,bx,by,colAt((ay+by)/2),T)}
+}
+for(let c=0;c<3;c++)for(const[a,b]of[[171,240],[249,320],[329,400],[409,474]])seg(206+104*c,a,206+104*c,b,P_,11);
+for(let c=0;c<3;c++){const d=103.5*c,sp=167+d,tp=246+d;
+  split(sp,161,sp,484,9);split(tp,161,tp,484,9);
+  seg(sp,244.5,tp,244.5,S_,9);seg(sp,324.5,tp,324.5,S_,9);seg(sp,404.5,tp,404.5,T_,9);
+  const V=[[sp+40.5,165.5],[sp+1,205],[tp,284],[sp+1,361],[tp,440],[tp-39,479]];
+  for(let i=0;i<5;i++)split(V[i][0],V[i][1],V[i+1][0],V[i+1][1],9);
+}
+function dseg(px,py,p){const dx=p.x2-p.x1,dy=p.y2-p.y1,l2=dx*dx+dy*dy;let t=l2?((px-p.x1)*dx+(py-p.y1)*dy)/l2:0;t=Math.max(0,Math.min(1,t));return Math.hypot(px-p.x1-t*dx,py-p.y1-t*dy)}
+/* Pixel cells fill ONLY the empty areas between the lines */
+const CX=[],CY=[];
+for(let gx=174;gx<478;gx+=6)for(let gy=172;gy<477;gy+=6){const cx=gx+3,cy=gy+3;let on=false;
+  for(const p of PC){if(cx<p.minx||cx>p.maxx||cy<p.miny||cy>p.maxy)continue;if(dseg(cx,cy,p)<p.T/2+3.8){on=true;break}}
+  if(!on){CX.push(cx);CY.push(cy)}}
+const NC=CX.length,CV=new Float32Array(NC),CT=new Uint8Array(NC),CA=Float32Array.from({length:NC},()=>.08+Math.random()*.1);
+
+/* ---- Cables: 12 colors, helical twist so every crossing has a clear over/under ---- */
+const N=12,NSEG=64,hx=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const mix=(a,b,t)=>{const A=hx(a),B=hx(b);return'#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')};
+const CAB=[['#e801a0','#ffd1f0',0],['#ff72cf','#fffff0',0],['#78a9ff','#fffff0',1],['#3f6fe0','#cfe0ff',1],['#47dbd9','#fffff0',2],['#1fa6a6','#c8fffe',2],
+ ['#fffff0','#e801a0',0],['#b69cff','#fffff0',1],['#a8007a','#ffb3e6',0],['#b8d2ff','#1d0f33',1],['#a3f2f0','#1d0f33',2],['#ff9be3','#1d0f33',0]]
+ .map(([b,pk,ci])=>({b,pk,ci,hi:mix(b,'#ffffff',.5),sh:[0,1,2,3,4,5].map(i=>mix(b,D_,.5*(1-i/5)))}));
+const ENT=Array.from({length:N},(_,c)=>172+c*(300/(N-1)));
+const rank=j=>{const a=Array.from({length:N},(_,c)=>[c+rnd(-j,j),c]).sort((p,q)=>p[0]-q[0]),r=[];a.forEach((e,i)=>r[e[1]]=i);return r};
+const RS=rank(2.4),RM=rank(1.6);
+const WV=Array.from({length:N},()=>({f:rnd(1,2),p:rnd(0,6.28),a:rnd(.6,1.1),zf:rnd(.8,1.8),zp:rnd(0,6.28),zg:rnd(2,3.4),zq:rnd(0,6.28),jm:rnd(-3,3),w2:rnd(2.5,4),p2:rnd(0,6.28)}));
+const PX=Array.from({length:N},()=>new Float32Array(NSEG+1)),PY=Array.from({length:N},()=>new Float32Array(NSEG+1)),PZ=Array.from({length:N},()=>new Float32Array(NSEG+1));
+const Z=new Float32Array(N*NSEG),IDX=Array.from({length:N*NSEG},(_,i)=>i),BK=new Array(N*NSEG);
+const PK=CAB.map(()=>Array.from({length:4},()=>({t:rnd(-.4,1),v:rnd(.16,.3),n:3+Math.floor(Math.random()*4),hit:false})));
+
+let W,H,dpr,k,S,L0,Lx,cw,gp,off,tm=0,last=0,count=0,pulses=[],outs=[];
+const sxp=X=>L0.x+(X-SX0)*k,syp=Y=>L0.y+(Y-SY0)*k;
+function build(){
+  off=document.createElement('canvas');off.width=Math.ceil(BW*k*dpr);off.height=Math.ceil(BH*k*dpr);
+  const o=off.getContext('2d');o.setTransform(dpr*k,0,0,dpr*k,-SX0*dpr*k,-SY0*dpr*k);
+  PC.forEach(p=>{o.strokeStyle=p.col;o.lineWidth=p.T;o.beginPath();o.moveTo(p.x1,p.y1);o.lineTo(p.x2,p.y2);o.stroke()});
+  for(let i=0;i<NC;i++){o.globalAlpha=CA[i];o.fillStyle=i%3?S_:T_;o.fillRect(CX[i]-2.5,CY[i]-2.5,5,5)}
+}
+function size(){
+  dpr=Math.min(devicePixelRatio||1,2);W=document.body.clientWidth;H=document.body.clientHeight;cv.width=W*dpr;cv.height=H*dpr;
+  const nr=W<700;S=nr?Math.min(W*.6,H*.6):Math.min(W*.4,H*.78);k=S/334;
+  L0={x:W*(nr?.68:.67)-(319-SX0)*k,y:H*.5-(322-SY0)*k};Lx=sxp(164);
+  cw=Math.max(6,Math.min(11,S/38));gp=Math.max(3,Math.round(cw/3));build();
+}
+function paths(){
+  const yE=H*.5,spm=S*.036,A=S*.07;
+  for(let s=0;s<=NSEG;s++){const t=s/NSEG,xx=-.05*W+t*(Lx+.05*W),a1=sm(0,.5,t),b1=sm(.5,1,t),bump=sm(.22,.42,t)*(1-sm(.6,.8,t)),env=sm(.05,.3,t)*(1-sm(.7,.95,t));
+    
+    for(let c=0;c<N;c++){const q=WV[c],ys=H*(.12+.66*RS[c]/(N-1)),ym=yE+(RM[c]-(N-1)/2)*spm+q.jm,ye=syp(ENT[c]),dr=tm*.04;
+      const base=(ys*(1-a1)+ym*a1)*(1-b1)+ye*b1,wob=A*bump*q.a*Math.sin(6.2832*q.f*t+q.p+dr)+S*.025*env*Math.sin(6.2832*q.w2*t+q.p2+dr);PX[c][s]=xx;PY[c][s]=base+wob;PZ[c][s]=((Math.sin(6.2832*q.zf*t+q.zp)+.6*Math.sin(6.2832*q.zg*t+q.zq))/1.6)*(1-.7*sm(.85,1,t))+c*.001}}
+}
+function hit(c){count++;if(Math.random()<.7&&pulses.length<36)pulses.push({X:168,Y:ENT[c]+rnd(-6,6),vx:rnd(200,280),vy:0,ci:CAB[c].ci})}
+function light(p){const r=26,r2=r*r;
+  for(let i=0;i<NC;i++){const dx=CX[i]-p.X,dy=CY[i]-p.Y;if(dx*dx+dy*dy<r2&&Math.random()<.5){CV[i]=.6+.4*Math.random();CT[i]=p.ci}}
+  for(const q of PC){if(p.X<q.minx-r||p.X>q.maxx+r||p.Y<q.miny-r||p.Y>q.maxy+r)continue;const d=dseg(p.X,p.Y,q);if(d<r){q.lv=Math.max(q.lv,1-d/r*.5);q.tn=p.ci}}}
+
+function frame(ts){
+  const dt=Math.min(.05,(ts-last)/1000||0);last=ts;tm+=dt;
+  x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);paths();
+  /* data packets (pixel blocks) travelling inside each cable */
+  BK.fill(null);const step=gp*2/Lx;
+  for(let c=0;c<N;c++)for(const p of PK[c]){
+    p.t+=p.v*dt*(.8+.8*sm(.5,1,p.t))*(reduce?.35:1);
+    if(!p.hit&&p.t>=1){p.hit=true;hit(c)}
+    if(p.t>1+p.n*step){p.t=-rnd(0,.6);p.hit=false;p.n=3+Math.floor(Math.random()*4)}
+    for(let j=0;j<p.n;j++){const tt=p.t-j*step;if(tt<0||tt>=1)continue;const f=tt*NSEG,s=Math.floor(f),fr=f-s,g=c*NSEG+s;
+      (BK[g]||(BK[g]=[])).push(PX[c][s]+(PX[c][s+1]-PX[c][s])*fr,PY[c][s]+(PY[c][s+1]-PY[c][s])*fr,j,p.n,c)}}
+  /* painter's order by depth: back to front, so crossings read clearly */
+  for(let c=0;c<N;c++)for(let s=0;s<NSEG;s++)Z[c*NSEG+s]=(PZ[c][s]+PZ[c][s+1])/2;
+  IDX.sort((a,b)=>Z[a]-Z[b]);
+  for(const g of IDX){const c=(g/NSEG)|0,s=g%NSEG,cb=CAB[c],x0=PX[c][s],y0=PY[c][s],x1=PX[c][s+1],y1=PY[c][s+1];
+    let dx=x1-x0,dy=y1-y0;const l=Math.hypot(dx,dy)||1;dx=dx/l*1.6;dy=dy/l*1.6;
+    x.globalAlpha=1;x.beginPath();x.moveTo(x0-dx,y0-dy);x.lineTo(x1+dx,y1+dy);
+    x.lineWidth=cw+3.5;x.strokeStyle=D_;x.stroke();
+    x.lineWidth=cw;x.strokeStyle=cb.sh[Math.max(0,Math.min(5,Math.round((Z[g]+1)/2*5)))];x.stroke();
+    x.globalAlpha=.3;x.beginPath();x.moveTo(x0-dx,y0-dy-cw*.18);x.lineTo(x1+dx,y1+dy-cw*.18);x.lineWidth=cw*.24;x.strokeStyle=cb.hi;x.stroke();
+    const q=BK[g];if(q){x.globalAlpha=1;for(let i=0;i<q.length;i+=5){const sx=Math.round(q[i]/gp)*gp,sy=Math.round(q[i+1]/gp)*gp,z=gp*1.6;
+      x.fillStyle=q[i+2]?cb.pk:B_;x.globalAlpha=1-.5*q[i+2]/q[i+3];x.fillRect(sx-z/2,sy-z/2,z,z)}}
+  }
+  x.globalAlpha=1;x.drawImage(off,L0.x,L0.y,BW*k,BH*k);
+  /* processing pulses ripple through the logo */
+  for(let i=pulses.length-1;i>=0;i--){const p=pulses[i];
+    p.X+=p.vx*dt*(reduce?.4:1);p.vy+=(rnd(-1,1)*260-p.vy*2.5)*dt;p.Y=Math.max(172,Math.min(472,p.Y+p.vy*dt));light(p);
+    if(p.X>480){outs.push({x:sxp(478),y:syp(p.Y),vx:rnd(160,260),life:1,ci:p.ci});pulses.splice(i,1)}}
+  for(let n=0;n<2;n++){const i=Math.floor(Math.random()*NC);CV[i]=.5;CT[i]=Math.floor(Math.random()*3)}
+  x.setTransform(dpr*k,0,0,dpr*k,dpr*(L0.x-SX0*k),dpr*(L0.y-SY0*k));x.globalCompositeOperation='source-over';
+  const dec=Math.pow(.06,dt);
+  for(let i=0;i<NC;i++){let v=CV[i];if(v<.02){CV[i]=0;continue}v*=dec;CV[i]=v;const a=v*(.8+.2*Math.random());x.fillStyle=PAL[CT[i]];
+    x.globalCompositeOperation='lighter';x.globalAlpha=a*.2;x.fillRect(CX[i]-5,CY[i]-5,10,10);x.globalCompositeOperation='source-over';x.globalAlpha=a*.85;x.fillRect(CX[i]-2.5,CY[i]-2.5,5,5)}
+  for(const p of PC){if(p.lv<.02){p.lv=0;continue}p.lv*=dec;x.beginPath();x.moveTo(p.x1,p.y1);x.lineTo(p.x2,p.y2);
+    x.globalCompositeOperation='lighter';x.strokeStyle=PAL[p.tn];x.globalAlpha=p.lv*.16;x.lineWidth=p.T+12;x.stroke();x.globalAlpha=p.lv*.24;x.lineWidth=p.T+5;x.stroke();x.globalCompositeOperation='source-over';x.globalAlpha=p.lv*.55;x.lineWidth=p.T;x.stroke()}
+  x.setTransform(dpr,0,0,dpr,0,0);x.globalCompositeOperation='source-over';
+  for(let i=outs.length-1;i>=0;i--){const o=outs[i];o.x+=o.vx*dt;o.life-=dt*1.1;if(o.life<=0){outs.splice(i,1);continue}
+    x.globalAlpha=o.life;x.fillStyle=PAL[o.ci];x.fillRect(Math.floor(o.x/gp)*gp,Math.round(o.y/gp)*gp-gp,gp*4,gp*2)}
+  x.globalAlpha=1;$('n').textContent=(count*4800).toLocaleString('en-CA');
+  requestAnimationFrame(frame);
+}
+size();addEventListener('resize',size);requestAnimationFrame(frame);
+</script>
+</body></html>

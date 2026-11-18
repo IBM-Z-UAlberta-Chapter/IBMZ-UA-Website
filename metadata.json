@@ -1,0 +1,6 @@
+{
+  "name": "IBM Z UAlberta Chapter",
+  "description": "Official IBM Z student community at the University of Alberta. Learn z/OS, JCL, and enterprise computing through hands-on labs, datathons, and industry panels.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
