@@ -7,8 +7,8 @@ export const careerPanelEvent: EventItem = {
   title: 'IBM Industry Career Panel & Networking Night',
   date: null,
   format: 'In person',
-  location: 'UAlberta Auditorium · Not Confirmed',
-  durationLabel: '2 hours',
+  location: 'Location TBD',
+  durationLabel: 'Time TBD',
   tag: 'Talk',
   timeline: 'upcoming',
   description:

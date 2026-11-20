@@ -1,14 +1,14 @@
 import { DISCORD_URL } from '../../config';
 import type { EventItem } from './types';
 
-/** 48-hour asynchronous enterprise predictive-modeling competition for UAlberta students. */
+/** Asynchronous enterprise predictive-modeling competition for UAlberta students. */
 export const miniDatathonEvent: EventItem = {
   id: 'evt-mini-datathon',
-  title: '48-Hour Mini-Datathon',
+  title: 'Mini-Datathon',
   date: null,
   format: 'Online',
-  location: 'Kaggle & GitHub Classroom',
-  durationLabel: '48 hours',
+  location: 'Platform TBD',
+  durationLabel: 'Time TBD',
   tag: 'Competition',
   timeline: 'upcoming',
   description:

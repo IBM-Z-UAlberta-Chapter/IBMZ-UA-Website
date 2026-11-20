@@ -7,8 +7,8 @@ export const xploreBootcampEvent: EventItem = {
   title: 'IBM Z Xplore Bootcamp (Launch Event)',
   date: null,
   format: 'In person',
-  location: 'UAlberta Campus · Room Not Confirmed',
-  durationLabel: '90 min',
+  location: 'Location TBD',
+  durationLabel: 'Time TBD',
   tag: 'Lab',
   timeline: 'upcoming',
   description:

@@ -6,8 +6,8 @@ export const mainframesVsCloudDeck: PresentationItem = {
   code: 'DECK-01',
   title: 'Mainframes vs the Cloud',
   subtitle: 'Throughput, I/O architecture, and where IBM Z fits today',
-  dateLabel: 'Oct 2026 · Not confirmed',
-  speaker: 'Maya Lin · Guest Systems Engineer (Not confirmed)',
+  dateLabel: 'Date TBD',
+  speaker: 'Speaker TBD',
   slidesUrl: null,
   summary:
     'Proposed technical talk comparing vertical mainframe scale, transactional integrity, and hybrid cloud integration patterns.',

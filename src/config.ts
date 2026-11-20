@@ -21,8 +21,8 @@ export const DISCORD_URL = 'https://discord.gg/nvnH6vgTY';
 /** Official IBM Z UAlberta Chapter LinkedIn company page. */
 export const LINKEDIN_URL = 'https://www.linkedin.com/company/ibm-z-ualberta-chapter/';
 
-// TODO: Replace with the official chapter GitHub organization URL once finalized
-export const GITHUB_URL = 'https://github.com/TODO-ibmz-ualberta';
+/** Official IBM Z UAlberta Chapter GitHub organization URL. */
+export const GITHUB_URL = 'https://github.com/IBM-Z-UAlberta-Chapter';
 
 // TODO: Replace with the official chapter Instagram profile URL once finalized
 export const INSTAGRAM_URL = 'https://instagram.com/TODO-ibmz-ualberta';

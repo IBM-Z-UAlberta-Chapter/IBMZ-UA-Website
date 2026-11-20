@@ -271,7 +271,7 @@ export function EventsSection() {
                 <div className="flex items-center gap-2.5">
                   <CalendarClock className="h-4 w-4 text-turquoise shrink-0" strokeWidth={1.5} />
                   <span>
-                    Date: {selectedEvent.date ?? 'Not confirmed'} · Duration:{' '}
+                    Date: {selectedEvent.date ?? 'TBD'} · Duration:{' '}
                     {selectedEvent.durationLabel}
                   </span>
                 </div>
@@ -285,7 +285,7 @@ export function EventsSection() {
 
               {selectedEvent.isConfirmed === false && (
                 <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-sky">
-                  SCHEDULE NOT CONFIRMED · FINAL DATE &amp; ROOM WILL POST IN DISCORD
+                  DATE, TIME &amp; LOCATION TBD · UPDATES WILL POST IN DISCORD
                 </p>
               )}
 

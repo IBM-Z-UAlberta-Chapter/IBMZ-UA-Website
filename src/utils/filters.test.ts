@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   CLUB_EMAILS,
   DISCORD_URL,
+  GITHUB_URL,
   JOIN_FORM_URL,
   LINKEDIN_URL,
 } from '../config';
@@ -46,10 +47,10 @@ test('filterEvents returns empty list for past timeline on initial launch', () =
   assert.equal(past.length, 0);
 });
 
-test('formatEventDateBlock renders TBA for null and parses valid ISO dates', () => {
-  assert.deepEqual(formatEventDateBlock(null), { month: 'DATE', day: 'TBA' });
+test('formatEventDateBlock renders TBD for null and parses valid ISO dates', () => {
+  assert.deepEqual(formatEventDateBlock(null), { month: 'DATE', day: 'TBD' });
   assert.deepEqual(formatEventDateBlock('2026-10-14'), { month: 'OCT', day: '14' });
-  assert.deepEqual(formatEventDateBlock('invalid'), { month: 'DATE', day: 'TBA' });
+  assert.deepEqual(formatEventDateBlock('invalid'), { month: 'DATE', day: 'TBD' });
 });
 
 test('getNextModuleIndex wraps cleanly with keyboard arrow/home/end keys for 4 tracks', () => {
@@ -92,9 +93,40 @@ test('sponsor tiers, contact emails, social URLs, and unconfirmed mock data meet
   );
   assert.deepEqual([...CLUB_EMAILS], ['rsethi3@ualberta.ca', 'yzhou44@ualberta.ca']);
   assert.equal(DISCORD_URL, 'https://discord.gg/nvnH6vgTY');
+  assert.equal(GITHUB_URL, 'https://github.com/IBM-Z-UAlberta-Chapter');
   assert.equal(LINKEDIN_URL, 'https://www.linkedin.com/company/ibm-z-ualberta-chapter/');
   assert.equal(JOIN_FORM_URL, 'https://forms.gle/CdvncDrEwxqctv4V7');
   assert.ok(PROJECTS.every((p) => p.confirmed === false));
-  assert.ok(PRESENTATIONS.every((d) => !/tbd/i.test(d.speaker) && d.confirmed === false));
-  assert.ok([...LEADERSHIP_TEAM, ...VP_TEAM].every((m) => !/tbd/i.test(m.name) && m.confirmed === false));
+  assert.ok(
+    PRESENTATIONS.every(
+      (d) => d.speaker === 'Speaker TBD' && d.dateLabel === 'Date TBD' && d.confirmed === false
+    )
+  );
+  assert.ok(
+    EVENTS.every(
+      (e) =>
+        e.date === null &&
+        e.durationLabel === 'Time TBD' &&
+        /TBD/i.test(e.location) &&
+        e.isConfirmed === false
+    )
+  );
+  assert.ok(LEARN_MODULES.every((m) => m.duration === 'Duration TBD'));
+  assert.deepEqual(
+    LEADERSHIP_TEAM.map((m) => ({ name: m.name, role: m.role, confirmed: m.confirmed })),
+    [
+      { name: 'Rumaiza Norova', role: 'IBM Z Ambassador', confirmed: true },
+      { name: 'Raghav Sethi', role: 'Co-President & IBM Z Ambassador', confirmed: true },
+      { name: 'Yifan Zhou', role: 'Co-President & IBM Z Ambassador', confirmed: true },
+    ]
+  );
+  assert.ok(
+    LEADERSHIP_TEAM.every(
+      (m) => /IBM Z Ambassador/i.test(m.role) && m.responsibility.trim().length > 40
+    )
+  );
+  assert.equal(VP_TEAM.length, 7);
+  assert.ok(
+    VP_TEAM.every((m) => m.name === 'To Be Hired' && m.initials === 'TBH' && m.confirmed === false)
+  );
 });

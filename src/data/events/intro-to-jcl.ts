@@ -7,8 +7,8 @@ export const introToJclEvent: EventItem = {
   title: 'Hands-on Lab: Intro to JCL',
   date: null,
   format: 'In person',
-  location: 'UAlberta Campus · Room Not Confirmed',
-  durationLabel: '90 min',
+  location: 'Location TBD',
+  durationLabel: 'Time TBD',
   tag: 'Lab',
   timeline: 'upcoming',
   description:

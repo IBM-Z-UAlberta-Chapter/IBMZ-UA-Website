@@ -64,8 +64,12 @@ function TeamCard({
       </div>
 
       <div className="mt-5 flex items-center justify-between border-t border-navy-700 pt-3.5">
-        <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-beige-dim">
-          {member.confirmed ? 'CONFIRMED' : 'SAMPLE · NOT CONFIRMED'}
+        <span
+          className={`font-mono text-[11px] uppercase tracking-[0.12em] ${
+            member.confirmed ? 'text-turquoise' : 'text-beige-dim'
+          }`}
+        >
+          {member.confirmed ? 'CONFIRMED' : 'OPEN POSITION'}
         </span>
         {member.linkedinUrl ? (
           <a
@@ -102,7 +106,7 @@ export function TeamSection() {
           index="06"
           tag="// 06 TEAM"
           title="Team"
-          intro="The students running the chapter (sample preview — officer appointments not confirmed)."
+          intro="Meet our IBM Z Ambassadors and Co-Presidents. Open VP roles are currently recruiting for the upcoming term."
           titleId="team-heading"
         />
 

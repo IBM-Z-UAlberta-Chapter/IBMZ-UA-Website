@@ -46,20 +46,20 @@ const MONTH_ABBR = [
 
 /**
  * Formats an ISO date (`YYYY-MM-DD`) into stacked month/day labels for event cards.
- * Returns `{ month: 'DATE', day: 'TBA' }` when unconfirmed (`null`) or malformed.
+ * Returns `{ month: 'DATE', day: 'TBD' }` when unconfirmed (`null`) or malformed.
  */
 export function formatEventDateBlock(isoDate: string | null): { month: string; day: string } {
   if (!isoDate) {
-    return { month: 'DATE', day: 'TBA' };
+    return { month: 'DATE', day: 'TBD' };
   }
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate.trim());
   if (!match) {
-    return { month: 'DATE', day: 'TBA' };
+    return { month: 'DATE', day: 'TBD' };
   }
   const monthIdx = Number(match[2]) - 1;
   const dayNum = Number(match[3]);
   if (monthIdx < 0 || monthIdx > 11 || dayNum < 1 || dayNum > 31) {
-    return { month: 'DATE', day: 'TBA' };
+    return { month: 'DATE', day: 'TBD' };
   }
   return {
     month: MONTH_ABBR[monthIdx],

@@ -1,10 +1,10 @@
 import type { TeamMember } from '../types';
 
-/** VP profile: VP External (sample entry, not confirmed). */
+/** VP profile: VP External (open position). */
 export const vpExternal: TeamMember = {
   id: 'role-vp-external',
-  name: 'Noah Reyes',
-  initials: 'NR',
+  name: 'To Be Hired',
+  initials: 'TBH',
   role: 'VP External',
   responsibility: 'Collaboration with other campus clubs and community groups.',
   tier: 'vp',

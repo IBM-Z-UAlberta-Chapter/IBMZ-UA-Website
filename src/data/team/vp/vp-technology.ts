@@ -1,10 +1,10 @@
 import type { TeamMember } from '../types';
 
-/** VP profile: VP Technology (sample entry, not confirmed). */
+/** VP profile: VP Technology (open position). */
 export const vpTechnology: TeamMember = {
   id: 'role-vp-tech',
-  name: 'Priya Nair',
-  initials: 'PN',
+  name: 'To Be Hired',
+  initials: 'TBH',
   role: 'VP Technology',
   responsibility: 'Website, GitHub organization and our platforms.',
   tier: 'vp',

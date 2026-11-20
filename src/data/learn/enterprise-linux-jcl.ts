@@ -6,7 +6,7 @@ export const enterpriseLinuxJclTrack: LearnModule = {
   code: 'TRACK 02',
   title: 'Enterprise Linux & JCL',
   format: 'In-person lab',
-  duration: '90 min',
+  duration: 'Duration TBD',
   description:
     'Write Job Control Language, run batch jobs, navigate USS, and practice bash scripting on Z.',
   topics: ['JCL Batch Jobs', 'UNIX System Services', 'Bash on Z'],

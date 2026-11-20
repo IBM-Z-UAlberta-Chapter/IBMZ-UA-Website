@@ -7,7 +7,7 @@ const PILLARS = [
     numeral: '01',
     title: 'LEARN',
     icon: Terminal,
-    copy: 'Bi-weekly hands-on labs take you from your first z/OS session to JCL, enterprise Linux and data pipelines. No lecture-only sessions.',
+    copy: 'Hands-on labs take you from your first z/OS session to JCL, enterprise Linux and data pipelines. No lecture-only sessions.',
   },
   {
     numeral: '02',

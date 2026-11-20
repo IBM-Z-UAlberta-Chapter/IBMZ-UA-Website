@@ -86,7 +86,7 @@ export function PresentationsSection() {
                   </span>
                   {!deck.confirmed && (
                     <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-sky">
-                      NOT CONFIRMED
+                      TBD
                     </span>
                   )}
                 </div>
@@ -148,7 +148,7 @@ export function PresentationsSection() {
               <div className="pr-10">
                 <Badge variant="sky">
                   {previewDeck.code}
-                  {!previewDeck.confirmed ? ' · NOT CONFIRMED' : ''}
+                  {!previewDeck.confirmed ? ' · TBD' : ''}
                 </Badge>
                 <DialogTitle className="mt-3">{previewDeck.title}</DialogTitle>
                 <DialogDescription className="mt-2">

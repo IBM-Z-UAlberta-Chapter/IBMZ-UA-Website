@@ -1,14 +1,15 @@
 import type { TeamMember } from '../types';
 
-/** Leadership profile: IBM Z Ambassador (sample entry, not confirmed). */
+/** Leadership profile: IBM Z Ambassador. */
 export const ibmZAmbassador: TeamMember = {
   id: 'role-ambassador',
-  name: 'Maya Lin',
-  initials: 'ML',
+  name: 'Rumaiza Norova',
+  initials: 'RN',
   role: 'IBM Z Ambassador',
-  responsibility: 'Liaison to the IBM Z student community.',
+  responsibility:
+    'Connects UAlberta students with the global IBM Z ecosystem, mentors newcomers on IBM Z Xplore, and champions campus mainframe workshops and outreach.',
   tier: 'leadership',
   photoUrl: null,
   linkedinUrl: null,
-  confirmed: false,
+  confirmed: true,
 };

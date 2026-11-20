@@ -1,10 +1,10 @@
 import type { TeamMember } from '../types';
 
-/** VP profile: VP Outreach (sample entry, not confirmed). */
+/** VP profile: VP Outreach (open position). */
 export const vpOutreach: TeamMember = {
   id: 'role-vp-outreach',
-  name: 'Chloe Park',
-  initials: 'CP',
+  name: 'To Be Hired',
+  initials: 'TBH',
   role: 'VP Outreach',
   responsibility: 'Sponsors, speakers and industry partners.',
   tier: 'vp',

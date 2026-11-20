@@ -6,7 +6,7 @@ export const datathonStarterKit: ProjectItem = {
   id: 'proj-datathon',
   title: 'Datathon Starter Kit',
   description:
-    'Notebook baselines, evaluation scripts, and GitHub Classroom templates for our 48-hour semester mini-datathon.',
+    'Notebook baselines, evaluation scripts, and GitHub Classroom templates for our semester mini-datathon.',
   tags: ['Jupyter', 'PyTorch', 'GitHub Classroom'],
   status: 'Planned',
   workingGroup: 'Competitions Working Group',

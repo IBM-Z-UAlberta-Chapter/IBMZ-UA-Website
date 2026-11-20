@@ -1,5 +1,5 @@
 import type * as React from 'react';
-import { ArrowUpRight, Disc, Github, Instagram, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, Github, Instagram, Linkedin, Mail } from 'lucide-react';
 import {
   CLUB_EMAILS,
   DISCORD_URL,
@@ -13,6 +13,33 @@ import { NAV_ITEMS } from './Navbar';
 import { ClubLogoMark, TrussGrid } from './TrussMotifs';
 import { Button } from './ui/button';
 
+function DiscordIcon({
+  className = 'h-4 w-4',
+  strokeWidth = 1.5,
+}: {
+  className?: string;
+  strokeWidth?: number;
+}) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M8.5 6.3 7.8 5C6.2 5.4 4.8 6.1 4 6.9 2.4 9.9 2 13.1 2.3 16.4c1.3 1.1 2.9 1.8 4.4 2.2l1.1-1.8c-.8-.3-1.5-.7-2.2-1.2M15.5 6.3 16.2 5c1.6.4 3 1.1 3.8 1.9 1.6 3 2 6.2 1.7 9.5-1.3 1.1-2.9 1.8-4.4 2.2l-1.1-1.8c.8-.3 1.5-.7 2.2-1.2" />
+      <path d="M7.8 15.6c2.7 1.1 5.7 1.1 8.4 0" />
+      <path d="M8.5 6.3c2.3-.5 4.7-.5 7 0" />
+      <circle cx="9.2" cy="12" r="1.25" fill="currentColor" stroke="none" />
+      <circle cx="14.8" cy="12" r="1.25" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 const JOIN_STEPS = [
   { num: '01', text: 'Fill out the form' },
   { num: '02', text: 'Join the Discord' },
@@ -22,7 +49,7 @@ const JOIN_STEPS = [
 const SOCIAL_LINKS = [
   { label: 'Instagram', href: INSTAGRAM_URL, icon: Instagram },
   { label: 'LinkedIn', href: LINKEDIN_URL, icon: Linkedin },
-  { label: 'Discord', href: DISCORD_URL, icon: Disc },
+  { label: 'Discord', href: DISCORD_URL, icon: DiscordIcon },
   { label: 'GitHub', href: GITHUB_URL, icon: Github },
 ];
 

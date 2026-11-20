@@ -6,7 +6,7 @@ export const xploreFoundationsTrack: LearnModule = {
   code: 'TRACK 01',
   title: 'IBM Z Xplore Foundations',
   format: 'In-person lab',
-  duration: '90 min',
+  duration: 'Duration TBD',
   description:
     'Mainframe architecture vs distributed cloud, z/OS basics, datasets, and VS Code extension setup.',
   topics: ['z/OS Basics', 'Datasets', 'Zowe & VS Code'],

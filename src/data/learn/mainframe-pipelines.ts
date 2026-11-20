@@ -6,7 +6,7 @@ export const mainframePipelinesTrack: LearnModule = {
   code: 'TRACK 03',
   title: 'Mainframe Data Pipelines',
   format: 'Hybrid',
-  duration: '2 hours',
+  duration: 'Duration TBD',
   description:
     'Connect Python data pipelines (Pandas, PyTorch) to enterprise mainframe databases through APIs.',
   topics: ['Python & Pandas', 'REST APIs', 'PyTorch Pipelines'],

@@ -1,10 +1,10 @@
 import type { TeamMember } from '../types';
 
-/** VP profile: VP Marketing (sample entry, not confirmed). */
+/** VP profile: VP Marketing (open position). */
 export const vpMarketing: TeamMember = {
   id: 'role-vp-marketing',
-  name: 'Tariq Al-Mansoor',
-  initials: 'TA',
+  name: 'To Be Hired',
+  initials: 'TBH',
   role: 'VP Marketing',
   responsibility: 'Brand, social media, posters and newsletter.',
   tier: 'vp',

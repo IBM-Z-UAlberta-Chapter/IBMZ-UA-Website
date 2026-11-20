@@ -1,10 +1,10 @@
 import type { TeamMember } from '../types';
 
-/** VP profile: VP Finance (sample entry, not confirmed). */
+/** VP profile: VP Finance (open position). */
 export const vpFinance: TeamMember = {
   id: 'role-vp-finance',
-  name: 'Hana Sato',
-  initials: 'HS',
+  name: 'To Be Hired',
+  initials: 'TBH',
   role: 'VP Finance',
   responsibility: 'Budget, sponsorship funds and financial reporting.',
   tier: 'vp',

@@ -241,7 +241,7 @@ export function LearnSection() {
               Your first batch job in JCL
             </h2>
             <p className="mt-3 text-sm sm:text-base leading-relaxed text-beige-dim">
-              In our bi-weekly workshops you connect to a real z/OS system via Zowe and VS Code,
+              In our hands-on workshops you connect to a real z/OS system via Zowe and VS Code,
               write Job Control Language decks, submit them to JES2, and verify clean{' '}
               <span className="font-mono text-turquoise">MAXCC=0000</span> return codes.
             </p>

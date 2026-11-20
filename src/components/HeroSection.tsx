@@ -32,7 +32,7 @@ const DIRECTORY_CARDS: DirectoryCard[] = [
     index: '02',
     title: 'Events',
     meta: `${EVENTS.length} UPCOMING`,
-    description: 'Bootcamps, JCL labs, the 48-hour mini-datathon, and career panels.',
+    description: 'Bootcamps, JCL labs, our mini-datathon, and career panels.',
     path: '/events',
     accent: 'turquoise',
   },
@@ -64,7 +64,7 @@ const DIRECTORY_CARDS: DirectoryCard[] = [
     index: '06',
     title: 'Team',
     meta: `${LEADERSHIP_TEAM.length + VP_TEAM.length} ROLES`,
-    description: 'The IBM Z Ambassador, Co-Presidents, and seven VP portfolios.',
+    description: 'Our IBM Z Ambassadors, Co-Presidents, and seven VP portfolios.',
     path: '/team',
     accent: 'turquoise',
   },
@@ -216,11 +216,11 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
             >
               <li className="flex items-center gap-2">
                 <span className="h-2 w-0.5 bg-pink" aria-hidden="true" />
-                <span>BI-WEEKLY LABS</span>
+                <span>HANDS-ON LABS</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="h-2 w-0.5 bg-indigo" aria-hidden="true" />
-                <span>48-HOUR DATATHON</span>
+                <span>MINI-DATATHON</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="h-2 w-0.5 bg-turquoise" aria-hidden="true" />

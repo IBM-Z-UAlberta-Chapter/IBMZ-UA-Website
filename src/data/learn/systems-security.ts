@@ -6,7 +6,7 @@ export const systemsSecurityTrack: LearnModule = {
   code: 'TRACK 04',
   title: 'IBM Systems & Cloud Security',
   format: 'Hybrid',
-  duration: '90 min',
+  duration: 'Duration TBD',
   description:
     'Pervasive encryption, zero-trust architecture, and quantum-safe cryptography basics.',
   topics: ['Pervasive Encryption', 'Zero-Trust', 'Quantum-Safe Crypto'],

@@ -6,8 +6,8 @@ export const jclIn30MinutesDeck: PresentationItem = {
   code: 'DECK-02',
   title: 'JCL in 30 Minutes',
   subtitle: 'JOB, EXEC, DD statements, and reading JES return codes',
-  dateLabel: 'Nov 2026 · Not confirmed',
-  speaker: 'Samir Patel · Workshop Lead (Not confirmed)',
+  dateLabel: 'Date TBD',
+  speaker: 'Speaker TBD',
   slidesUrl: null,
   summary:
     'Guided walkthrough for submitting your first z/OS batch jobs and debugging common JCL return codes in SDSF.',
